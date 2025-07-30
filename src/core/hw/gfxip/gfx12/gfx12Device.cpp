@@ -392,6 +392,32 @@ void InitializeGpuChipProperties(
         pInfo->gfxip.mallSizeInBytes = 64_MiB;
 
         pInfo->gfxip.tccSizeInBytes = 8_MiB; // gl2c_total_cache_size_KB
+    } 
+    else if (AMDGPU_IS_NAVI44(pInfo->familyId, pInfo->eRevId))
+    {
+        uint32 stepping = Abi::GfxIpSteppingNavi44;
+
+        pInfo->gfx9.rbPlus = 1;
+
+        pInfo->gpuType                             = GpuType::Discrete;
+        pInfo->revision                            = AsicRevision::Navi44;
+        pInfo->gfxStepping                         = stepping;
+        pInfo->gfxTriple.stepping                  = stepping;
+        pInfo->gfx9.numShaderEngines               = 2;    // RX 9060 XT has 2 SEs
+        pInfo->gfx9.numSdpInterfaces               = 32;   // Adjust for Navi44
+        pInfo->gfx9.maxNumCuPerSh                  = 16;   // 32 CUs total / 2 SEs = 16 per SE
+        pInfo->gfx9.maxNumRbPerSe                  = 4;    // Same as Navi48
+
+        // The GL2C is the TCC - adjust cache config
+        pInfo->gfx9.gfx10.numGl2a                  = 2;    // Fewer for mid-range
+        pInfo->gfx9.gfx10.numGl2c                  = 16;   // Half of Navi48
+        pInfo->gfx9.numTccBlocks                   = pInfo->gfx9.gfx10.numGl2c;
+
+        pInfo->gfx9.gfx10.numWgpAboveSpi = 2;  // Adjust for smaller GPU
+        pInfo->gfx9.gfx10.numWgpBelowSpi = 0;
+
+        pInfo->gfxip.mallSizeInBytes = 32_MiB;  // Smaller cache
+        pInfo->gfxip.tccSizeInBytes = 4_MiB;  // Half the cache size
     }
     else
 #endif

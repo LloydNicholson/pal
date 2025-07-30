@@ -196,6 +196,12 @@ pal_client_bp(PAL_BUILD_GFX ON
             PAL_BUILD_GFX
     )
 
+#if PAL_BUILD_NAVI44
+    pal_client_bp(PAL_BUILD_NAVI44 ON
+        DEPENDS_ON
+            PAL_BUILD_GFX12
+    )
+
 #if PAL_BUILD_NAVI48
         pal_client_bp(PAL_BUILD_NAVI48 ON
             DEPENDS_ON
