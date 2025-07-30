@@ -332,8 +332,7 @@ Result PipelineAbiReader::GetMetadata(
                     pRawMetadata = pDesc;
                     metadataSize = descSize;
 
-                    result =
-                        PalAbi::GetPalMetadataVersion(pReader, pDesc, descSize, &metadataMajorVer, &metadataMinorVer);
+                    result = PalAbi::GetPalMetadataVersion(pReader, pDesc, descSize, &metadataMajorVer, &metadataMinorVer);
 
                     break;
                 }
@@ -349,8 +348,7 @@ Result PipelineAbiReader::GetMetadata(
             }
 
             // Note: this may be called multiple times for multi-ELF code objects
-            result = PalAbi::DeserializeCodeObjectMetadata(
-                pReader, pMetadata, pRawMetadata, metadataSize, metadataMajorVer, metadataMinorVer);
+            result = Util::PalAbi::Metadata::DeserializeCodeObjectMetadata(pReader, pMetadata);
             foundMetadata = true;
         }
 
