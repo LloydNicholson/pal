@@ -152,6 +152,10 @@
 #define ASICREV_IS_NAVI48(r)           ASICREV_IS(r, NAVI48)
 #endif
 
+#if PAL_BUILD_NAVI44
+#define ASICREV_IS_NAVI44(r)           ASICREV_IS(r, NAVI44)
+#endif
+
 // AMDGPU_IS(familyId, eRevisionId, familyName, revisionName)
 #define AMDGPU_IS(f, r, fn, rn)    (FAMILY_IS(f, fn) && ASICREV_IS(r, rn))
 
