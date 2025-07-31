@@ -86,15 +86,15 @@ static const PipelineBinary*const GetRpmGraphicsPipelineTable(
         break;
 #endif
 
-#if PAL_BUILD_GFX12 && PAL_BUILD_NAVI48
-    case Pal::IpTriple({ 12, 0, 1 }):
-        pTable = rpmGfxBinaryTable12_0_1;
-        break;
-#endif
-
 #if PAL_BUILD_GFX12 && PAL_BUILD_NAVI44
     case Pal::IpTriple({ 12, 0, 0 }):
         pTable = rpmGfxBinaryTable12_0_0;
+        break;
+#endif
+
+#if PAL_BUILD_GFX12 && PAL_BUILD_NAVI48
+    case Pal::IpTriple({ 12, 0, 1 }):
+        pTable = rpmGfxBinaryTable12_0_1;
         break;
 #endif
 

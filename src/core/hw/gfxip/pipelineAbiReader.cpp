@@ -348,7 +348,8 @@ Result PipelineAbiReader::GetMetadata(
             }
 
             // Note: this may be called multiple times for multi-ELF code objects
-            result = Util::PalAbi::Metadata::DeserializeCodeObjectMetadata(pReader, pMetadata);
+            result = PalAbi::DeserializeCodeObjectMetadata(
+                pReader, pMetadata, pRawMetadata, metadataSize, metadataMajorVer, metadataMinorVer);
             foundMetadata = true;
         }
 
@@ -450,7 +451,7 @@ void PipelineAbiReader::GetGfxIpVersion(
     ) const
 {
     AmdGpuMachineType machineType = static_cast<AmdGpuMachineType>(GetElfReader().GetHeader().e_flags);
-    MachineTypeToGfxIpVersion(machineType, pGfxIpMajorVer, pGfxIpMinorVer, pGfxIpStepping);
+    Util::Abi::MachineTypeToGfxIpVersion(machineType, pGfxIpMajorVer, pGfxIpMinorVer, pGfxIpStepping);
 }
 
 // =====================================================================================================================

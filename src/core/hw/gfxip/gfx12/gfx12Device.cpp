@@ -393,7 +393,9 @@ void InitializeGpuChipProperties(
 
         pInfo->gfxip.tccSizeInBytes = 8_MiB; // gl2c_total_cache_size_KB
     } 
-    else if (AMDGPU_IS_NAVI44(pInfo->familyId, pInfo->eRevId))
+#endif
+#if PAL_BUILD_NAVI44
+    if (AMDGPU_IS_NAVI44(pInfo->familyId, pInfo->eRevId))
     {
         uint32 stepping = Abi::GfxIpSteppingNavi44;
 
