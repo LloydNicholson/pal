@@ -87,8 +87,9 @@ static const PipelineBinary*const GetRpmGraphicsPipelineTable(
 #endif
 
 #if PAL_BUILD_GFX12 && PAL_BUILD_NAVI44
+    // reuse 12_0_1 for Navi44 as well. Not even sure what this is? Would like some guidance please.
     case Pal::IpTriple({ 12, 0, 0 }):
-        pTable = rpmGfxBinaryTable12_0_0;
+        pTable = rpmGfxBinaryTable12_0_1;
         break;
 #endif
 

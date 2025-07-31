@@ -105,7 +105,7 @@
 #define AMDGPU_NAVI48_RANGE        0x50, 0xff
 #endif
 #if PAL_BUILD_NAVI44
-#define AMDGPU_NAVI44_RANGE        0x20, 0x50 // 32 <= x < 80
+#define AMDGPU_NAVI44_RANGE        0x01, 0x50 // 1 <= x < 80
 #endif
 
 #define AMDGPU_EXPAND_FIX(x) x
@@ -237,7 +237,7 @@
 #endif
 
 #if PAL_BUILD_NAVI44
-#define DEVICE_ID_NAVI44_94             0x94
+#define DEVICE_ID_NAVI44_7590           0x7590
 #endif
 
 // DEVICE_IS(deviceId, deviceName)
